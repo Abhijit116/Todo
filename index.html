@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    * {
+    margin:0;
+    padding:0;
+    font-family:Arial;
+ }
+
+body {
+    background-color:#000000;
+   
+}
+
+.container {
+    background: linear-gradient(45deg,rgb(232, 121, 121),rgb(44, 193, 226));
+    margin-top: -450px;
+    padding:1rem;
+    width:350px;
+    height: 420px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,50%);
+    position: absolute;
+    border: 2px solid rgb(82, 81, 81);
+    border-radius:10px;
+    box-shadow: 8px 4px 45px rgb(135, 73, 2);
+}
+
+p {
+    font-size:1.5rem;
+    font-family:Georgia;
+    font-weight:bold;
+    left: 50%;
+    top: 50%;
+    transform: translate(25%,-20%);
+
+}
+
+input {
+    font-size:1rem;
+    padding:.7rem 1rem;
+    border:none;
+    outline:none;
+    background-color:#EEEEEE;
+    width:65%;
+    margin:1rem 9px;
+    border-radius:1.3rem 0 0 1.3rem;
+    border:1px solid rgb(117, 116, 116);
+}
+
+button {
+    font-size:1rem;
+    padding:.7rem 1.3rem;
+    border:none;
+    margin-left:-15px;
+   background-color: rgb(255, 60, 0);
+    border:1px solid #747474;
+    font-weight:bold;
+    border-radius:0 1.5rem 1.5rem 0;
+    color:rgb(255, 255, 255);
+}
+
+button:active {
+    color:#000000;
+    background-color:white;
+}
+
+li {
+    padding:.5rem 1rem;
+    margin-left:8px;
+    list-style:none;
+    position:relative;
+    margin-bottom:.4rem;
+}
+
+li:before {
+    content:'';
+    width:1rem;
+    height:1rem;
+    border-radius:50%;
+    border:1px solid rgb(0, 0, 0);
+    position:absolute;
+    left:-8px;
+}
+
+li.checked:before {
+    background-color:#e20000;
+}
+
+span {
+    position:absolute;
+    right:0;
+    font-size:1.4rem;
+    padding:.3rem .75rem;
+    border-radius:50%;
+    color:black;
+    cursor: pointer;
+}
+    
+span:hover {
+    background-color:#EEEEEE;
+}
+
+li:hover:after {
+    background-color:#EEEEEE;
+}
+
+.checked {
+    color:rgb(0, 0, 0);
+    text-decoration:line-through 2px solid;
+    text-decoration-color:#ff0000;
+}
+footer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60px, 190px);
+}
+
+</style>
+</head>
+<body>
+
+      <div class = "container">
+        <p >&#128221; To-Do List </p>
+        <input type = "text" id = "input-task"
+         placeholder = "Enter Tasks!">
+        <button onclick = "addTask()">Add
+        </button>
+        <ul id = "create-list"></ul>
+        <footer style="color: white;">© Abhijit 2k24 </footer>
+      </div>
+      
+      <script>
+        const inputTask =
+        document.getElementById("input-task");
+        const createList =
+        document.getElementById("create-list");
+        
+        function addTask() {
+          if (inputTask.value === "") {
+            confirm("Please enter a task!");
+          } else {
+              let li =
+              document.createElement("li");
+              li.innerHTML = inputTask.value;
+              createList.appendChild(li);
+              inputTask.value = "";
+          
+          
+              let span =
+              document.createElement("span");
+              span.innerHTML = "&times;";
+              li.appendChild(span);
+          }
+        }
+        
+        createList.addEventListener("click",
+          function(e) {
+            if (e.target.tagName === "LI") {
+          e.target.classList.toggle("checked");
+            } else if (e.target.tagName ===
+             "SPAN") {
+              e.target.parentElement.remove()
+              }
+          })
+      </script>
+    </body>
+</html>
